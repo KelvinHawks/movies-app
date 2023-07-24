@@ -30,7 +30,7 @@ const loginUser = async(req,res)=>{
     const user = User.findOne({email})
     if(user){
         
-        const hashedPassword = User.password
+        const hashedPassword = user.password
         const ComparesPassword = await bcrypt.compare(hashedPassword, password)
         if(ComparesPassword){
            res.status(200).json({
