@@ -1,10 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import{useNavigate} from 'react-router-dom'
 import AuthContext from '../../Context'
+import './register.css'
 
 function Register() {
   const navigate = useNavigate()
-  const{register,userInfo,error} = useContext(AuthContext)
+  const{register,userInfo} = useContext(AuthContext)
   const[inputValue, setInputValue] = useState({
     username:'',
     email:'',
@@ -26,13 +27,14 @@ function Register() {
     }
   },[userInfo,navigate])
   return (
-    <div>
+    <div className='container'>
       <form method='POST' onSubmit={handleSubmit}>
-        {error&&(<div><p>{error}</p></div>)}
+        <h1>Register</h1>
+        {/* {error&&(<div><p>{error}</p></div>)} */}
         <input type="text" name='username' onChange={handleChange} placeholder='username'/>
         <input type="email" name='email' onChange={handleChange} placeholder='email'/>
         <input type="password" name='password' onChange={handleChange} placeholder='password'/>
-        <button type='submit'>Register</button>
+        <button type='submit'><a href="/login">Register</a></button>
       </form>
     </div>
   )
